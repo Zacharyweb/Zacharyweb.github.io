@@ -94,16 +94,17 @@
 
 
 
-<meta name="description" content="Keep Hungry , Keep Follish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zachary&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="本文主要尝试使用es6新特性Object.defineProperty()来实现一个简单的双向绑定案例。相关代码已经放在 Github，会持续更新。  Vue双向绑定实现过程从开始接触Vue开始，我们便对它的“数据响应”赞叹不绝。我们知道，Vue的双向绑定是基于es6的Object.defineProperty()方法实现的，Vue通过Object.defineProperty()来实现对数据的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="仿Vue双向绑定demo">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/仿Vue双向绑定demo/index.html">
 <meta property="og:site_name" content="Zachary&#39;Blog">
-<meta property="og:description" content="Keep Hungry , Keep Follish">
+<meta property="og:description" content="本文主要尝试使用es6新特性Object.defineProperty()来实现一个简单的双向绑定案例。相关代码已经放在 Github，会持续更新。  Vue双向绑定实现过程从开始接触Vue开始，我们便对它的“数据响应”赞叹不绝。我们知道，Vue的双向绑定是基于es6的Object.defineProperty()方法实现的，Vue通过Object.defineProperty()来实现对数据的">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-15T02:31:29.149Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zachary&#39;Blog">
-<meta name="twitter:description" content="Keep Hungry , Keep Follish">
+<meta name="twitter:title" content="仿Vue双向绑定demo">
+<meta name="twitter:description" content="本文主要尝试使用es6新特性Object.defineProperty()来实现一个简单的双向绑定案例。相关代码已经放在 Github，会持续更新。  Vue双向绑定实现过程从开始接触Vue开始，我们便对它的“数据响应”赞叹不绝。我们知道，Vue的双向绑定是基于es6的Object.defineProperty()方法实现的，Vue通过Object.defineProperty()来实现对数据的">
 
 
 
@@ -132,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/15/仿Vue双向绑定demo/"/>
 
 
 
 
 
-  <title>Zachary'Blog</title>
+  <title>仿Vue双向绑定demo | Zachary'Blog</title>
   
 
 
@@ -167,9 +168,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -252,9 +251,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -284,9 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/15/仿Vue双向绑定demo/" itemprop="url">仿Vue双向绑定demo</a></h1>
+          <h1 class="post-title" itemprop="name headline">仿Vue双向绑定demo</h1>
         
 
         <div class="post-meta">
@@ -336,17 +333,13 @@
       
 
       
-        
-          
-            <blockquote>
+        <blockquote>
 <p>本文主要尝试使用es6新特性Object.defineProperty()来实现一个简单的双向绑定案例。<br>相关代码已经放在 <a href="https://github.com/callmedadaxin/proxy-vue" target="_blank" rel="external">Github</a>，会持续更新。</p>
 </blockquote>
 <h2 id="Vue双向绑定实现过程"><a href="#Vue双向绑定实现过程" class="headerlink" title="Vue双向绑定实现过程"></a>Vue双向绑定实现过程</h2><p>从开始接触Vue开始，我们便对它的“数据响应”赞叹不绝。我们知道，Vue的双向绑定是基于es6的Object.defineProperty()方法实现的，Vue通过Object.defineProperty()来实现对数据的劫持，并触发对视图的更新工作。展开来说，当数据改变时，Object.defineProperty()对属性设置一个set函数，当数据改变时就会触发这个函数，所以我们只要将更新方法放在里面就可以实现数据到视图的更新了。如果还不熟悉其用法，<a href="https://github.com/callmedadaxin/proxy-vue" target="_blank" rel="external">请点击这里阅读更多用法</a>。</p>
 <h2 id="本案例实现步骤"><a href="#本案例实现步骤" class="headerlink" title="本案例实现步骤"></a>本案例实现步骤</h2><p>1.实现一个监听器Observer，用来劫持并监听所有属性，如有变动，就通知订阅者Watcher。<br>2.实现一个订阅者Watcher，可以收到属性的变化通知并执行相应的函数，从而更新视图。<br>3.实现一个关联者Dep，将Observer和Watcher关联起来。<br>4.实现一个解析器Compile，可以扫描和解析每个节点的相关指令，并根据初始化模板数据以及初始化相应的订阅器。<br>流程图如下：</p>
 <h3 id="实现一个Observer"><a href="#实现一个Observer" class="headerlink" title="实现一个Observer"></a>实现一个Observer</h3><p>实现一个监听器Observer，用来劫持并监听所有属性，如有变动，就通知订阅者Watcher。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const dom = new Proxy(&#123;&#125;, &#123;</div><div class="line">  get (target, tagName) &#123;</div><div class="line">    return (attrs = &#123;&#125;, ...childrens) =&gt; &#123;</div><div class="line">      // 创建节点</div><div class="line">      const elem = document.createElement(tagName)</div><div class="line"></div><div class="line">      // 添加attribute</div><div class="line">      attrs.forEach(attr =&gt; elem.addAttribute(attr, attrs[attr])</div><div class="line"></div><div class="line">      // 添加子元素</div><div class="line">      childrens.forEach(child =&gt; &#123;</div><div class="line">        const child = typeof child === &apos;string&apos;</div><div class="line">          ? document.createTextNode(child) </div><div class="line">          : child</div><div class="line"></div><div class="line">        elem.appendChild(child)</div><div class="line">      &#125;)</div><div class="line"></div><div class="line">      return elem</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 
-          
-        
       
     </div>
     
@@ -363,140 +356,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/08/15/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="朱两边">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/user.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Zachary'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/15/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-15T09:39:08+08:00">
-                2016-08-15
-              </time>
+              <a href="/2016/08/15/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -506,10 +387,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -517,6 +399,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -537,8 +423,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            章节导航
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            博客概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/user.png"
@@ -582,6 +477,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue双向绑定实现过程"><span class="nav-number">1.</span> <span class="nav-text">Vue双向绑定实现过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本案例实现步骤"><span class="nav-number">2.</span> <span class="nav-text">本案例实现步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现一个Observer"><span class="nav-number">2.1.</span> <span class="nav-text">实现一个Observer</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -712,10 +623,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
