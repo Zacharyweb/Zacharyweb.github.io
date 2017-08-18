@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2017/08/17/webpack%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</loc>
+        <lastmod>2017-08-17T13:13:25.621Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2017/08/11/ios%E5%92%8Candroid%20%E6%B5%8F%E8%A7%88%E5%99%A8%E9%80%82%E9%85%8D%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
         <lastmod>2017-08-17T06:52:36.925Z</lastmod>
         <changefreq>weekly</changefreq>
