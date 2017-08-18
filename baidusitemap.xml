@@ -3,27 +3,157 @@
 
 
     
-    
   <url>
-    <loc>http://yoursite.com/2017/08/17/webpack%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2017-08-17T13:13:25.621Z</lastmod>
+    <loc>http://yoursite.com/2017/02/23/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2017-08-18T13:17:59.695Z</lastmod>
     <data>
         <display>
-        <title>webpack踩坑记录</title>
-        <pubTime>2017-08-17T13:13:25.000Z</pubTime>
+        <title>git常用命令汇总</title>
+        <pubTime>2017-02-23T07:54:06.000Z</pubTime>
         
+        <tag>git</tag>
+         
          
            
+             
+              <breadCrumb title="辅助工具" url="http://yoursite.com/categories/%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/"/>
+          
         </display>
     </data>
     </url>
 
     
+  <url>
+    <loc>http://yoursite.com/2016/07/03/git%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8(3)/</loc>
+    <lastmod>2017-08-18T12:56:52.780Z</lastmod>
+    <data>
+        <display>
+        <title>git基础学习与使用(3)</title>
+        <pubTime>2016-07-03T07:54:06.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>github</tag>
+         
+         
+           
+             
+              <breadCrumb title="辅助工具" url="http://yoursite.com/categories/%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
+  <url>
+    <loc>http://yoursite.com/2016/07/01/git%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8(2)/</loc>
+    <lastmod>2017-08-18T12:11:55.313Z</lastmod>
+    <data>
+        <display>
+        <title>git基础学习与使用(2)</title>
+        <pubTime>2016-07-01T07:54:06.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="辅助工具" url="http://yoursite.com/categories/%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/21/git%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8(1)/</loc>
+    <lastmod>2017-08-18T10:21:26.714Z</lastmod>
+    <data>
+        <display>
+        <title>git基础学习与使用(1)</title>
+        <pubTime>2016-06-21T07:54:06.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="辅助工具" url="http://yoursite.com/categories/%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/16/gulp%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-08-18T07:52:40.639Z</lastmod>
+    <data>
+        <display>
+        <title>gulp学习笔记</title>
+        <pubTime>2016-06-16T04:45:44.000Z</pubTime>
+        
+        <tag>gulp</tag>
+         
+         
+           
+             
+              <breadCrumb title="构建工具" url="http://yoursite.com/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/12/node%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2017-08-18T06:03:11.213Z</lastmod>
+    <data>
+        <display>
+        <title>node基础与环境搭建</title>
+        <pubTime>2016-06-12T04:58:32.000Z</pubTime>
+        
+        <tag>node</tag>
+         
+        <tag>nvm</tag>
+         
+        <tag>环境变量</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/05/12/%E4%BB%BFVue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9Ademo/</loc>
+    <lastmod>2017-08-18T04:22:50.547Z</lastmod>
+    <data>
+        <display>
+        <title>仿Vue双向绑定demo</title>
+        <pubTime>2017-05-12T01:39:08.000Z</pubTime>
+        
+        <tag>vue</tag>
+         
+        <tag>双向绑定</tag>
+         
+         
+           
+             
+              <breadCrumb title="框架学习" url="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>http://yoursite.com/2017/08/11/ios%E5%92%8Candroid%20%E6%B5%8F%E8%A7%88%E5%99%A8%E9%80%82%E9%85%8D%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</loc>
-    <lastmod>2017-08-17T06:52:36.925Z</lastmod>
+    <lastmod>2017-08-18T04:21:28.446Z</lastmod>
     <data>
         <display>
         <title>ios和android 浏览器适配问题记录</title>
@@ -33,10 +163,32 @@
          
         <tag>android</tag>
          
+        <tag>移动端</tag>
+         
          
            
              
-              <breadCrumb title="移动端" url="http://yoursite.com/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+              <breadCrumb title="兼容问题" url="http://yoursite.com/categories/%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/08/01/webpack%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/</loc>
+    <lastmod>2017-08-18T04:21:25.831Z</lastmod>
+    <data>
+        <display>
+        <title>webpack踩坑记录</title>
+        <pubTime>2017-08-01T13:13:25.000Z</pubTime>
+        
+        <tag>webpack</tag>
+         
+         
+           
+             
+              <breadCrumb title="构建工具" url="http://yoursite.com/categories/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/"/>
           
         </display>
     </data>
@@ -45,18 +197,6 @@
     
     
     
-  <url>
-    <loc>http://yoursite.com/2017/05/12/%E4%BB%BFVue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9Ademo/</loc>
-    <lastmod>2017-08-17T02:30:17.448Z</lastmod>
-    <data>
-        <display>
-        <title>仿Vue双向绑定demo</title>
-        <pubTime>2017-05-12T01:39:08.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
+    
+    
 </urlset>

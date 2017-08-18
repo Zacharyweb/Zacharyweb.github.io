@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ios,android," />
+  <meta name="keywords" content="ios,android,移动端," />
 
 
 
@@ -97,14 +97,14 @@
 
 
 <meta name="description" content="参与手机端页面开发也有一段时间了，在此记录一些工作中遇到的ios和android 浏览器适配问题以及相应的解决方案，会持续更新。">
-<meta name="keywords" content="ios,android">
+<meta name="keywords" content="ios,android,移动端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ios和android 浏览器适配问题记录">
 <meta property="og:url" content="http://yoursite.com/2017/08/11/ios和android 浏览器适配问题记录/index.html">
 <meta property="og:site_name" content="Zachary&#39;Blog">
 <meta property="og:description" content="参与手机端页面开发也有一段时间了，在此记录一些工作中遇到的ios和android 浏览器适配问题以及相应的解决方案，会持续更新。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-17T06:52:36.925Z">
+<meta property="og:updated_time" content="2017-08-18T04:21:28.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ios和android 浏览器适配问题记录">
 <meta name="twitter:description" content="参与手机端页面开发也有一段时间了，在此记录一些工作中遇到的ios和android 浏览器适配问题以及相应的解决方案，会持续更新。">
@@ -397,8 +397,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/移动端/" itemprop="url" rel="index">
-                    <span itemprop="name">移动端</span>
+                  <a href="/categories/兼容问题/" itemprop="url" rel="index">
+                    <span itemprop="name">兼容问题</span>
                   </a>
                 </span>
 
@@ -440,6 +440,7 @@
 
       
         <p>参与手机端页面开发也有一段时间了，在此记录一些工作中遇到的ios和android 浏览器适配问题以及相应的解决方案，会持续更新。<br><a id="more"></a></p>
+<h3 id="移动端translateZ会影响定位元素的z-index"><a href="#移动端translateZ会影响定位元素的z-index" class="headerlink" title="移动端translateZ会影响定位元素的z-index"></a>移动端translateZ会影响定位元素的z-index</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">解决方案：给定位的元素也添加translateZ(npx),其中n需要大于其余translateZ的值。</div></pre></td></tr></table></figure>
 <h3 id="IOS移动端click事件300ms的延迟响应"><a href="#IOS移动端click事件300ms的延迟响应" class="headerlink" title="IOS移动端click事件300ms的延迟响应"></a>IOS移动端click事件300ms的延迟响应</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">移动设备上的web网页是有300ms延迟的，玩玩会造成按钮点击延迟甚至是点击失效。这是由于区分单击事件和双击屏幕缩放的历史原因造成的,</div><div class="line">2007年苹果发布首款iphone上IOS系统搭载的safari为了将适用于PC端上大屏幕的网页能比较好的展示在手机端上，使用了双击缩放(double tap to zoom)的方案，比如你在手机上用浏览器打开一个PC上的网页，你可能在看到页面内容虽然可以撑满整个屏幕，但是字体、图片都很小看不清，此时可以快速双击屏幕上的某一部分，你就能看清该部分放大后的内容，再次双击后能回到原始状态。</div><div class="line">双击缩放是指用手指在屏幕上快速点击两次，iOS 自带的 Safari 浏览器会将网页缩放至原始比例。</div><div class="line">原因就出在浏览器需要如何判断快速点击上，当用户在屏幕上单击某一个元素时候，例如跳转链接&lt;a href=&quot;#&quot;&gt;&lt;/a&gt;，此处浏览器会先捕获该次单击，但浏览器不能决定用户是单纯要点击链接还是要双击该部分区域进行缩放操作，所以，捕获第一次单击后，浏览器会先Hold一段时间t，如果在t时间区间里用户未进行下一次点击，则浏览器会做单击跳转链接的处理，如果t时间里用户进行了第二次单击操作，则浏览器会禁止跳转，转而进行对该部分区域页面的缩放操作。那么这个时间区间t有多少呢？在IOS safari下，大概为300毫秒。这就是延迟的由来。造成的后果用户纯粹单击页面，页面需要过一段时间才响应，给用户慢体验感觉，对于web开发者来说是，页面js捕获click事件的回调函数处理，需要300ms后才生效，也就间接导致影响其他业务逻辑的处理。</div><div class="line">解决方案：</div><div class="line">fastclick可以解决在手机上点击事件的300ms延迟</div><div class="line">zepto的touch模块，tap事件也是为了解决在click的延迟问题</div><div class="line">触摸事件的响应顺序为 touchstart --&gt; touchmove --&gt; touchend --&gt; click,也可以通过绑定ontouchstart事件，加快对事件的响应，解决300ms延迟问题</div></pre></td></tr></table></figure>
 <h3 id="一些情况下对非可点击元素如-label-span-监听click事件，ios下不会触发"><a href="#一些情况下对非可点击元素如-label-span-监听click事件，ios下不会触发" class="headerlink" title="一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发"></a>一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">解决方案：css增加cursor:pointer;</div></pre></td></tr></table></figure>
 <h3 id="三星手机遮罩层下的input、select、a等元素可以被点击和focus-点击穿透"><a href="#三星手机遮罩层下的input、select、a等元素可以被点击和focus-点击穿透" class="headerlink" title="三星手机遮罩层下的input、select、a等元素可以被点击和focus(点击穿透)"></a>三星手机遮罩层下的input、select、a等元素可以被点击和focus(点击穿透)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">问题发现于三星手机，这个在特定需求下才会有，因此如果没有类似问题的可以不看。首先需求是浮层操作，在三星上被遮罩的元素依然可以获取focus、click、change)，有两种解决方案：</div><div class="line">1.是通过层显示以后加入对应的class名控制，截断显示层下方可获取焦点元素的事件获取</div><div class="line">2.是通过将可获取焦点元素加入的disabled属性，也可以利用属性加dom锁定的方式（disabled的一种变换方式）</div></pre></td></tr></table></figure>
@@ -474,6 +475,8 @@
           
             <a href="/tags/android/" rel="tag"># android</a>
           
+            <a href="/tags/移动端/" rel="tag"># 移动端</a>
+          
         </div>
       
 
@@ -485,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/12/仿Vue双向绑定demo/" rel="next" title="仿Vue双向绑定demo">
-                <i class="fa fa-chevron-left"></i> 仿Vue双向绑定demo
+              <a href="/2017/08/01/webpack踩坑记录/" rel="next" title="webpack踩坑记录">
+                <i class="fa fa-chevron-left"></i> webpack踩坑记录
               </a>
             
           </div>
@@ -494,10 +497,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/17/webpack踩坑记录/" rel="prev" title="webpack踩坑记录">
-                webpack踩坑记录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -574,7 +573,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -585,7 +584,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -596,7 +595,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -617,7 +616,7 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/iissnan" target="_blank" title="GitHub">
+                <a href="https://github.com/Zacharyweb" target="_blank" title="GitHub">
                   
                     <i class="fa fa-fw fa-github"></i>
                   
@@ -628,7 +627,7 @@
               </span>
             
               <span class="links-of-author-item">
-                <a href="weibo" target="_blank" title="博客园">
+                <a href="http://www.cnblogs.com/zachary93/" target="_blank" title="博客园">
                   
                     <i class="fa fa-fw fa-podcast"></i>
                   
@@ -654,7 +653,7 @@
             <ul class="links-of-blogroll-list">
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://example.com/" title="悦邻舍" target="_blank">悦邻舍</a>
+                  <a href="http://www.zjresume.com/project/yls/page/" title="悦邻舍" target="_blank">悦邻舍</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
@@ -684,7 +683,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#IOS移动端click事件300ms的延迟响应"><span class="nav-number">1.</span> <span class="nav-text">IOS移动端click事件300ms的延迟响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些情况下对非可点击元素如-label-span-监听click事件，ios下不会触发"><span class="nav-number">2.</span> <span class="nav-text">一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三星手机遮罩层下的input、select、a等元素可以被点击和focus-点击穿透"><span class="nav-number">3.</span> <span class="nav-text">三星手机遮罩层下的input、select、a等元素可以被点击和focus(点击穿透)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#h5页面当输入框在最底部，点击软键盘后输入框会被遮挡。"><span class="nav-number">4.</span> <span class="nav-text">h5页面当输入框在最底部，点击软键盘后输入框会被遮挡。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不让-Android-手机识别邮箱"><span class="nav-number">5.</span> <span class="nav-text">不让 Android 手机识别邮箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止-iOS-识别长串数字为电话"><span class="nav-number">6.</span> <span class="nav-text">禁止 iOS 识别长串数字为电话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止-iOS-弹出各种操作窗口"><span class="nav-number">7.</span> <span class="nav-text">禁止 iOS 弹出各种操作窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止ios和android用户选中文字"><span class="nav-number">8.</span> <span class="nav-text">禁止ios和android用户选中文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios下取消input在输入的时候英文首字母的默认大写"><span class="nav-number">9.</span> <span class="nav-text">ios下取消input在输入的时候英文首字母的默认大写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在ios和andriod中-audio元素和video元素无法自动播放"><span class="nav-number">10.</span> <span class="nav-text">在ios和andriod中,audio元素和video元素无法自动播放</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端translateZ会影响定位元素的z-index"><span class="nav-number">1.</span> <span class="nav-text">移动端translateZ会影响定位元素的z-index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IOS移动端click事件300ms的延迟响应"><span class="nav-number">2.</span> <span class="nav-text">IOS移动端click事件300ms的延迟响应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些情况下对非可点击元素如-label-span-监听click事件，ios下不会触发"><span class="nav-number">3.</span> <span class="nav-text">一些情况下对非可点击元素如(label,span)监听click事件，ios下不会触发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三星手机遮罩层下的input、select、a等元素可以被点击和focus-点击穿透"><span class="nav-number">4.</span> <span class="nav-text">三星手机遮罩层下的input、select、a等元素可以被点击和focus(点击穿透)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#h5页面当输入框在最底部，点击软键盘后输入框会被遮挡。"><span class="nav-number">5.</span> <span class="nav-text">h5页面当输入框在最底部，点击软键盘后输入框会被遮挡。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不让-Android-手机识别邮箱"><span class="nav-number">6.</span> <span class="nav-text">不让 Android 手机识别邮箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止-iOS-识别长串数字为电话"><span class="nav-number">7.</span> <span class="nav-text">禁止 iOS 识别长串数字为电话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止-iOS-弹出各种操作窗口"><span class="nav-number">8.</span> <span class="nav-text">禁止 iOS 弹出各种操作窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止ios和android用户选中文字"><span class="nav-number">9.</span> <span class="nav-text">禁止ios和android用户选中文字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios下取消input在输入的时候英文首字母的默认大写"><span class="nav-number">10.</span> <span class="nav-text">ios下取消input在输入的时候英文首字母的默认大写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在ios和andriod中-audio元素和video元素无法自动播放"><span class="nav-number">11.</span> <span class="nav-text">在ios和andriod中,audio元素和video元素无法自动播放</span></a></li></ol></div>
             
 
           </div>
