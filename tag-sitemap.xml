@@ -44,27 +44,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/node/</loc>
-        <lastmod>2017-08-18T06:03:11.213Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/nvm/</loc>
-        <lastmod>2017-08-18T06:03:11.213Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</loc>
-        <lastmod>2017-08-18T06:03:11.213Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/gulp/</loc>
         <lastmod>2017-08-18T07:52:40.639Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -72,15 +51,64 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/github/</loc>
-        <lastmod>2017-08-18T12:56:52.780Z</lastmod>
+        <loc>http://yoursite.com/tags/npm/</loc>
+        <lastmod>2017-08-19T05:34:05.425Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/http/</loc>
+        <lastmod>2017-08-19T06:53:18.680Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/git/</loc>
-        <lastmod>2017-08-18T13:17:59.695Z</lastmod>
+        <lastmod>2017-08-19T07:06:41.795Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/github/</loc>
+        <lastmod>2017-08-19T07:06:41.795Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/express/</loc>
+        <lastmod>2017-08-19T07:07:45.531Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/node/</loc>
+        <lastmod>2017-08-19T07:18:21.103Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/nvm/</loc>
+        <lastmod>2017-08-19T07:18:21.103Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/</loc>
+        <lastmod>2017-08-19T07:18:21.103Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/jQuery/</loc>
+        <lastmod>2017-08-20T13:03:17.379Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

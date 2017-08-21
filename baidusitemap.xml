@@ -3,15 +3,122 @@
 
 
     
+    
   <url>
-    <loc>http://yoursite.com/2017/02/23/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</loc>
-    <lastmod>2017-08-18T13:17:59.695Z</lastmod>
+    <loc>http://yoursite.com/2016/09/07/jQuery%E6%8F%92%E4%BB%B6%E5%B0%81%E8%A3%85/</loc>
+    <lastmod>2017-08-20T13:03:17.379Z</lastmod>
     <data>
         <display>
-        <title>git常用命令汇总</title>
-        <pubTime>2017-02-23T07:54:06.000Z</pubTime>
+        <title>jQuery方法扩展与插件封装</title>
+        <pubTime>2016-09-07T07:54:06.000Z</pubTime>
+        
+        <tag>jQuery</tag>
+         
+         
+           
+             
+              <breadCrumb title="框架学习" url="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/06/21/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-08-19T08:57:16.289Z</lastmod>
+    <data>
+        <display>
+        <title>前端性能优化方法</title>
+        <pubTime>2017-06-21T01:39:08.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="性能优化" url="http://yoursite.com/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/09/22/jQuery%E4%B8%AD4%E7%A7%8D%E7%BB%91%E5%AE%9A%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/</loc>
+    <lastmod>2017-08-19T08:28:05.949Z</lastmod>
+    <data>
+        <display>
+        <title>jQuery中4种绑定事件方法的区别</title>
+        <pubTime>2016-09-22T07:54:06.000Z</pubTime>
+        
+        <tag>jQuery</tag>
+         
+         
+           
+             
+              <breadCrumb title="框架学习" url="http://yoursite.com/categories/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/06/12/node%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2017-08-19T07:18:21.103Z</lastmod>
+    <data>
+        <display>
+        <title>node基础与环境搭建</title>
+        <pubTime>2016-06-12T04:58:32.000Z</pubTime>
+        
+        <tag>node</tag>
+         
+        <tag>nvm</tag>
+         
+        <tag>环境变量</tag>
+         
+         
+           
+             
+              <breadCrumb title="后端开发" url="http://yoursite.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/07/express%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2017-08-19T07:07:45.531Z</lastmod>
+    <data>
+        <display>
+        <title>express学习笔记(1)</title>
+        <pubTime>2017-02-07T07:54:06.000Z</pubTime>
+        
+        <tag>node</tag>
+         
+        <tag>express</tag>
+         
+         
+           
+             
+              <breadCrumb title="后端开发" url="http://yoursite.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/03/git%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8(3)/</loc>
+    <lastmod>2017-08-19T07:06:41.795Z</lastmod>
+    <data>
+        <display>
+        <title>git基础学习与使用(3)</title>
+        <pubTime>2016-07-03T07:54:06.000Z</pubTime>
         
         <tag>git</tag>
+         
+        <tag>github</tag>
          
          
            
@@ -24,16 +131,58 @@
 
     
   <url>
-    <loc>http://yoursite.com/2016/07/03/git%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E4%B8%8E%E4%BD%BF%E7%94%A8(3)/</loc>
-    <lastmod>2017-08-18T12:56:52.780Z</lastmod>
+    <loc>http://yoursite.com/2016/12/21/http%E5%8D%8F%E8%AE%AE%E6%B5%85%E5%B0%9D/</loc>
+    <lastmod>2017-08-19T06:53:18.680Z</lastmod>
     <data>
         <display>
-        <title>git基础学习与使用(3)</title>
-        <pubTime>2016-07-03T07:54:06.000Z</pubTime>
+        <title>http协议浅尝</title>
+        <pubTime>2016-12-21T07:54:06.000Z</pubTime>
+        
+        <tag>node</tag>
+         
+        <tag>http</tag>
+         
+         
+           
+             
+              <breadCrumb title="后端开发" url="http://yoursite.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/01/12/NodeJS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)/</loc>
+    <lastmod>2017-08-19T05:34:05.425Z</lastmod>
+    <data>
+        <display>
+        <title>Node.js学习笔记(1)</title>
+        <pubTime>2017-01-12T07:54:06.000Z</pubTime>
+        
+        <tag>node</tag>
+         
+        <tag>npm</tag>
+         
+         
+           
+             
+              <breadCrumb title="后端开发" url="http://yoursite.com/categories/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/02/23/git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2017-08-18T13:17:59.695Z</lastmod>
+    <data>
+        <display>
+        <title>git常用命令汇总</title>
+        <pubTime>2017-02-23T07:54:06.000Z</pubTime>
         
         <tag>git</tag>
-         
-        <tag>github</tag>
          
          
            
@@ -106,30 +255,6 @@
 
     
   <url>
-    <loc>http://yoursite.com/2016/06/12/node%E5%9F%BA%E7%A1%80%E4%B8%8E%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</loc>
-    <lastmod>2017-08-18T06:03:11.213Z</lastmod>
-    <data>
-        <display>
-        <title>node基础与环境搭建</title>
-        <pubTime>2016-06-12T04:58:32.000Z</pubTime>
-        
-        <tag>node</tag>
-         
-        <tag>nvm</tag>
-         
-        <tag>环境变量</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习笔记" url="http://yoursite.com/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://yoursite.com/2017/05/12/%E4%BB%BFVue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9Ademo/</loc>
     <lastmod>2017-08-18T04:22:50.547Z</lastmod>
     <data>
@@ -194,7 +319,6 @@
     </data>
     </url>
 
-    
     
     
     

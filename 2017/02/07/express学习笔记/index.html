@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node,express," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Zachary'Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Express是用来加快我们开发Web应用程序的一个Web开发框架,在此记录一下express框架的基础使用。">
+<meta name="keywords" content="node,express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express学习笔记(1)">
+<meta property="og:url" content="http://yoursite.com/2017/02/07/express学习笔记/index.html">
+<meta property="og:site_name" content="Zachary&#39;Blog">
+<meta property="og:description" content="Express是用来加快我们开发Web应用程序的一个Web开发框架,在此记录一下express框架的基础使用。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-19T07:07:45.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="express学习笔记(1)">
+<meta name="twitter:description" content="Express是用来加快我们开发Web应用程序的一个Web开发框架,在此记录一下express框架的基础使用。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/07/express学习笔记/"/>
+
+
+
+
+
+  <title>express学习笔记(1) | Zachary'Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?82e89f3df1ad59c5bb568ad278186de5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+ 
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script> 
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zachary'Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">做个有趣的人。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            主页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-file-text-o"></i> <br />
+            
+            博文
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-project">
+          <a href="/project/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            作品
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-guestbook">
+          <a href="/guestbook/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-pencil"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/07/express学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="朱两边">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zachary'Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">express学习笔记(1)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-07T15:54:06+08:00">
+                2017-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/后端开发/" itemprop="url" rel="index">
+                    <span itemprop="name">后端开发</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 点击量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Express是用来加快我们开发Web应用程序的一个Web开发框架,在此记录一下express框架的基础使用。<br> <a id="more"></a></p>
+</blockquote>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><ul>
+<li>安装<code>npm install express</code></li>
+<li><p>创建一个app实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var app = express();</div></pre></td></tr></table></figure>
+</li>
+<li><p>在项目中使用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">'use strict'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line"></div><div class="line"><span class="comment">// 配置静态资源处理</span></div><div class="line">app.use(<span class="string">'/www'</span>,express.static(path.join(__dirname,<span class="string">'www'</span>)));</div><div class="line"></div><div class="line"><span class="comment">// 配置模板引擎</span></div><div class="line">app.set(<span class="string">'views'</span>,path.join(__dirname,<span class="string">'views'</span>)); <span class="comment">// 这里配置的是模板文件存放的目录</span></div><div class="line">app.set(<span class="string">'view engine'</span>,<span class="string">'ejs'</span>);  <span class="comment">// 注意：使用ejs模板引擎需要单独下载</span></div><div class="line"></div><div class="line"><span class="comment">// 处理网站首页请求</span></div><div class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">  res.send(<span class="string">'这里可以处理请求路径是 / 并且请求方法是get的请求'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 处理用户登录请求</span></div><div class="line">app.post(<span class="string">'/login'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</div><div class="line">  res.send(<span class="string">'这里可以处理请求路径是 /login 并且请求方法是post的请求路径'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 通过调用 app 实例的 listen 方法，和原生的 server.listen() 是一样的</span></div><div class="line">app.listen(<span class="number">3000</span>,<span class="string">'127.0.0.1'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'服务器已开启，请访问 http://127.0.0.1:3000/ 端口'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="基本API"><a href="#基本API" class="headerlink" title="基本API"></a>基本API</h2><h3 id="app-all"><a href="#app-all" class="headerlink" title="app.all()"></a>app.all()</h3><p>app.all(path, callback [, callback …])：对任何请求都会调用该处理函数。</p>
+<h3 id="app-get"><a href="#app-get" class="headerlink" title="app.get()"></a>app.get()</h3><p>app.get(path, callback [, callback …])：该方法可以处理get请求的url。</p>
+<h3 id="app-listen"><a href="#app-listen" class="headerlink" title="app.listen()"></a>app.listen()</h3><p>app.listen(port, [hostname], [backlog], [callback])：和原生的server.listen 是一样的。</p>
+<h3 id="app-post"><a href="#app-post" class="headerlink" title="app.post()"></a>app.post()</h3><p>app.post(path, callback [, callback …])：该方法可以处理post请求的url。</p>
+<h3 id="app-route"><a href="#app-route" class="headerlink" title="app.route()"></a>app.route()</h3><p>app.route(path)：路由。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.route(<span class="string">'/events'</span>)</div><div class="line">.all(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// runs for all HTTP verbs first</span></div><div class="line">  <span class="comment">// think of it as route specific middleware!</span></div><div class="line">&#125;)</div><div class="line">.get(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.json(...);</div><div class="line">&#125;)</div><div class="line">.post(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// maybe add a new event...</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="app-set"><a href="#app-set" class="headerlink" title="app.set()"></a>app.set()</h3><p>app.set(name, value)</p>
+<ul>
+<li>views 可以设置模板文件所在的位置</li>
+<li>view engine 可以设置使用哪个模板引擎</li>
+<li>view cache 是否缓存模板</li>
+</ul>
+<h3 id="app-use"><a href="#app-use" class="headerlink" title="app.use()"></a>app.use()</h3><p>app.use([path,] function [, function…])</p>
+<ul>
+<li>第一个参数 path 可选的，表示要匹配的路径的意思</li>
+<li>第二个参数一般是一个函数，函数里面的参数是：req,res,next</li>
+<li>req表示请求对象</li>
+<li>res表示响应对象</li>
+<li>next 表示下一个要匹配的中间件</li>
+</ul>
+<h3 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h3><h4 id="req-app"><a href="#req-app" class="headerlink" title="req.app"></a>req.app</h4><p>我们可以通过给 app 动态的挂载一些属性，然后就可以在req对象上直接通过app访问app的一些属性.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">app.locals.foo = <span class="string">'bar'</span>;</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(req.app.locals.foo);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="req-body"><a href="#req-body" class="headerlink" title="req.body"></a>req.body</h4><p>可以通过req.body 获取post请求提交的表单参数。</p>
+<blockquote>
+<p>注意：如果要使用req.body，必须使用第三方中间件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var bodyParser = require(&apos;body-parser&apos;);</div><div class="line"></div><div class="line">var app = express();</div><div class="line"></div><div class="line">// parse application/x-www-form-urlencoded</div><div class="line">app.use(bodyParser.urlencoded(&#123; extended: false &#125;))</div><div class="line"></div><div class="line">// 上面的操作完毕后，在以后的中间件中，就可以直接通过req.body来获取post请求体了</div></pre></td></tr></table></figure>
+<h4 id="req-hostname"><a href="#req-hostname" class="headerlink" title="req.hostname"></a>req.hostname</h4><p>可以获取主机名，或者说是域名。</p>
+<h4 id="req-ip"><a href="#req-ip" class="headerlink" title="req.ip"></a>req.ip</h4><p>可以获取客户端请求的IP地址。</p>
+<h4 id="req-params"><a href="#req-params" class="headerlink" title="req.params"></a>req.params</h4><p>当匹配/user/:uid/:haha到这种url的时候，直接将 uid、hah 挂载到 req.params 对象上。</p>
+<h4 id="req-path"><a href="#req-path" class="headerlink" title="req.path"></a>req.path</h4><p>获取客户端请求路径部分，不包含查询字符串。</p>
+<h4 id="req-query"><a href="#req-query" class="headerlink" title="req.query"></a>req.query</h4><p>可以直接通过它获取get请求参数。</p>
+<h3 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h3><h4 id="res-locals"><a href="#res-locals" class="headerlink" title="res.locals"></a>res.locals</h4><p>我们可以通过给locals挂载一些通用的数据，方便在多个地方使用。</p>
+<h4 id="res-download"><a href="#res-download" class="headerlink" title="res.download()"></a>res.download()</h4><p>res.download(path [, filename] [, fn])：可以主动让客户端下载这个文件。</p>
+<h4 id="res-json"><a href="#res-json" class="headerlink" title="res.json()"></a>res.json()</h4><p>res.json([body])：直接向客户端响应一个json格式的字符串。</p>
+<h4 id="res-redirect"><a href="#res-redirect" class="headerlink" title="res.redirect()"></a>res.redirect()</h4><p>res.redirect([status,] path)：让客户端重定向。</p>
+<ul>
+<li>例如：让客户端跳转到首页：<code>res.redirect(&#39;/&#39;)</code>。</li>
+<li>让客户端重定向到登录页面：<code>res.redirect(&#39;/login&#39;)</code>。</li>
+<li>让客户端，直接在当前页面刷新：<code>res.redirect(&#39;back&#39;)</code>。</li>
+</ul>
+<h4 id="res-render"><a href="#res-render" class="headerlink" title="res.render()"></a>res.render()</h4><p>res.render(view [, locals] [, callback])：向客户端响应一个模板，然后注入模板数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// send the rendered view to the client</div><div class="line">res.render(&apos;index&apos;);</div><div class="line"></div><div class="line">// if a callback is specified, the rendered HTML string has to be sent explicitly</div><div class="line">res.render(&apos;index&apos;, function(err, html) &#123;</div><div class="line">  res.send(html);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// pass a local variable to the view</div><div class="line">res.render(&apos;user&apos;, &#123; name: &apos;Tobi&apos; &#125;, function(err, html) &#123;</div><div class="line">  // ...</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="res-send"><a href="#res-send" class="headerlink" title="res.send()"></a>res.send()</h4><p>res.send([body])：向客户端发送普通文本，它自己会end。</p>
+<h3 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h3><p>基本使用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> router = express.Router([options]);</div><div class="line"><span class="comment">// 直接给route挂载一些中间件</span></div><div class="line"><span class="comment">// invoked for any requests passed to this router</span></div><div class="line">router.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// .. some logic here .. like any other middleware</span></div><div class="line">  next();</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// will handle any request that ends in /events</span></div><div class="line"><span class="comment">// depends on where the router is "use()'d"</span></div><div class="line">router.get(<span class="string">'/events'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// ..</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>router最终要把它作为一个中间件，被use到 app 上,在app.js中，直接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const router = require(&apos;./router&apos;);</div><div class="line">app.use(router);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/express/" rel="tag"># express</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/NodeJS学习笔记(1)/" rel="next" title="Node.js学习笔记(1)">
+                <i class="fa fa-chevron-left"></i> Node.js学习笔记(1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/23/git常用命令汇总/" rel="prev" title="git常用命令汇总">
+                git常用命令汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            章节导航
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            博客概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user.png"
+               alt="朱两边" />
+          <p class="site-author-name" itemprop="name">朱两边</p>
+           
+              <p class="site-description motion-element" itemprop="description">Keep Hungry , Keep Follish</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Zacharyweb" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.cnblogs.com/zachary93/" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-podcast"></i>
+                  
+                    
+                      博客园
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-link"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zjresume.com/project/yls/page/" title="悦邻舍" target="_blank">悦邻舍</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.zjresume.com" title="Zachary's Resume" target="_blank">Zachary's Resume</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E5%85%89%E5%8F%AF%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/21423171?fr=aladdin" title="上海光可" target="_blank">上海光可</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用"><span class="nav-number">1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本API"><span class="nav-number">2.</span> <span class="nav-text">基本API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#app-all"><span class="nav-number">2.1.</span> <span class="nav-text">app.all()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-get"><span class="nav-number">2.2.</span> <span class="nav-text">app.get()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-listen"><span class="nav-number">2.3.</span> <span class="nav-text">app.listen()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-post"><span class="nav-number">2.4.</span> <span class="nav-text">app.post()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-route"><span class="nav-number">2.5.</span> <span class="nav-text">app.route()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-set"><span class="nav-number">2.6.</span> <span class="nav-text">app.set()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app-use"><span class="nav-number">2.7.</span> <span class="nav-text">app.use()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Request"><span class="nav-number">2.8.</span> <span class="nav-text">Request</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#req-app"><span class="nav-number">2.8.1.</span> <span class="nav-text">req.app</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#req-body"><span class="nav-number">2.8.2.</span> <span class="nav-text">req.body</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#req-hostname"><span class="nav-number">2.8.3.</span> <span class="nav-text">req.hostname</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#req-ip"><span class="nav-number">2.8.4.</span> <span class="nav-text">req.ip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#req-params"><span class="nav-number">2.8.5.</span> <span class="nav-text">req.params</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#req-path"><span class="nav-number">2.8.6.</span> <span class="nav-text">req.path</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#req-query"><span class="nav-number">2.8.7.</span> <span class="nav-text">req.query</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Response"><span class="nav-number">2.9.</span> <span class="nav-text">Response</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#res-locals"><span class="nav-number">2.9.1.</span> <span class="nav-text">res.locals</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#res-download"><span class="nav-number">2.9.2.</span> <span class="nav-text">res.download()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#res-json"><span class="nav-number">2.9.3.</span> <span class="nav-text">res.json()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#res-redirect"><span class="nav-number">2.9.4.</span> <span class="nav-text">res.redirect()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#res-render"><span class="nav-number">2.9.5.</span> <span class="nav-text">res.render()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#res-send"><span class="nav-number">2.9.6.</span> <span class="nav-text">res.send()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router"><span class="nav-number">2.10.</span> <span class="nav-text">Router</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">朱两边
+    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <span><a href="/sitemap.xml">Google网站地图</a></span>
+    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <span><a href="/baidusitemap.xml">百度网站地图</a></span>
+  </span>
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Pisces
+    </a>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问用户：
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>访问次数：
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
